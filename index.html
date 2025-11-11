@@ -13,43 +13,50 @@
     <title>AI Italian Songs Generator</title>
   </head>
   <body>
-    <header>
-      <h1>AI Italian Songs Generator</h1>
-    </header>
-    <main>
-      <form>
-        <input
-          type="text"
-          placeholder="Enter the subject of your song"
-          autofocus
-          required
-          autocomplete="off"
-        />
-        <input type="submit" />
-      </form>
-      <div>
-        The song will go here
-        <br />
-        and here
-      </div>
-    </main>
-    <footer>
-      This project is coded by
-      <a href="https://github.com/chiaraalicata" target="_blank"
-        >Chiara Alicata</a
-      >
-      and it is
-      <a
-        href="https://github.com/chiaraalicata/italian-song-generator"
-        target="_blank"
-      >
-        open-sourced on GitHub</a
-      >
-      and it is hosted on
-      <a href="https://ai-italian-songs-generator.netlify.app/" target="_blank">
-        Netlify</a
-      >
-    </footer>
+    <div class="container">
+      <header>
+        <h1>AI Italian Songs Generator</h1>
+      </header>
+      <main>
+        <form>
+          <input
+            type="text"
+            placeholder="Enter the subject of your song"
+            aria-label="Song subject"
+            required
+            autocomplete="off"
+            class="instructions"
+          />
+          <input type="submit" value="Generate Song" class="submit-button" />
+        </form>
+
+        <div class="song">
+          The song will go here
+          <br />
+          and here
+        </div>
+      </main>
+      <footer>
+        This project is coded by
+        <a href="https://github.com/chiaraalicata" target="_blank"
+          >Chiara Alicata</a
+        >
+        and it is
+        <a
+          href="https://github.com/chiaraalicata/italian-song-generator"
+          target="_blank"
+        >
+          open-sourced on GitHub</a
+        >
+        and it is hosted on
+        <a
+          href="https://ai-italian-songs-generator.netlify.app/"
+          target="_blank"
+        >
+          Netlify</a
+        >
+      </footer>
+    </div>
     <script src="src/index.js"></script>
   </body>
 </html>
