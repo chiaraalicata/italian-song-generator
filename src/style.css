@@ -97,6 +97,12 @@ form {
   font-size: 16px;
   color: #444;
   min-height: 100px;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.song.visible {
+  opacity: 1;
 }
 
 footer {

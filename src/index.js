@@ -1,14 +1,18 @@
 function displaySong(response) {
-  let songElement = document.querySelector("#song");
+  const songElement = document.querySelector("#song");
   songElement.innerHTML = "";
 
-  let songText = response.data.answer?.trim();
+  const songText = response.data.answer?.trim();
+
   if (!songText) {
     songElement.innerHTML = "❌ Sorry, I couldn’t generate a song this time.";
     return;
   }
 
-  let typewriter = new Typewriter(songElement, {
+  songElement.classList.remove("hidden");
+  songElement.classList.add("visible");
+
+  const typewriter = new Typewriter(songElement, {
     loop: false,
     delay: 20,
     cursor: "",
@@ -20,30 +24,31 @@ function displaySong(response) {
 function generateSong(event) {
   event.preventDefault();
 
-  let instructionsInput = document.querySelector("#user-instructions");
+  const instructionsInput = document.querySelector("#user-instructions");
+  const songElement = document.querySelector("#song");
+  const apiKey = "2d69fd45aab0o483c2bccbf7b7ct0850";
 
-  let apiKey = "2d69fd45aab0o483c2bccbf7b7ct0850";
-  let prompt = `User instructions: Generate an Italian song about ${instructionsInput.value}`;
-  let context =
-    "You are a great songwriter and love to write catchy songs. Your mission is to generate a 3-strophe song and separate each strophe with a <br /><br />. You are an AI that writes Italian songs. Only output the lyrics of the song using <br /> for line breaks — no other HTML tags. Do not add introductions, explanations, or extra text.";
+  const prompt = `User instructions: Generate an Italian song about ${instructionsInput.value}`;
+  const context =
+    "You are a talented Italian songwriter. Your mission is to write a short song of exactly two strophes, separated by <br /><br />. Each strophe should contain 3 to 5 lines. Only output the lyrics of the song, using <br /> for line breaks — no other HTML tags. Do not add introductions, titles, or extra comments. Just return the song itself.";
 
-  let apiUrl = `https://api.shecodes.io/ai/v1/generate?prompt=${encodeURIComponent(
+  const apiUrl = `https://api.shecodes.io/ai/v1/generate?prompt=${encodeURIComponent(
     prompt
   )}&context=${encodeURIComponent(context)}&key=${apiKey}`;
 
-  let songElement = document.querySelector("#song");
   songElement.innerHTML = "🎵 Generating your song... please wait 🎶";
   songElement.classList.remove("hidden");
+  songElement.classList.remove("visible");
 
   axios
     .get(apiUrl)
     .then(displaySong)
-    .catch(function (error) {
+    .catch((error) => {
       songElement.innerHTML =
         "❌ Oops, something went wrong. Please try again.";
       console.error(error);
     });
 }
 
-let songFormElement = document.querySelector("#song-generator-form");
+const songFormElement = document.querySelector("#song-generator-form");
 songFormElement.addEventListener("submit", generateSong);
